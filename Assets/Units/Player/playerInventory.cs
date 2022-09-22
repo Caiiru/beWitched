@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerInventory : MonoBehaviour
 {
-    public IngredientData[] ingredientsDataList = new IngredientData[10];
+
     void Start(){
     }
 
@@ -16,16 +16,6 @@ public class playerInventory : MonoBehaviour
 
     public void AddItem(GameObject item){
         
-        
-        var listsize = ingredientsDataList.Length;
-    
-        for(int i= 0; i<listsize; i++){
-            if(ingredientsDataList[i] == null){
-                ingredientsDataList[i] = item.GetComponent<Ingredient>().data;
-                Destroy(item);
-                break;
-            }
-        }
 
     }
 }

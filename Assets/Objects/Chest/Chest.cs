@@ -9,22 +9,15 @@ public class Chest : ItensPriority,BaseItem
     public int maxAmount = 10;
     public TextMeshProUGUI textShowAmount;
 
-    public IngredientData ingredientData;
-    public GameObject genericFood;
 
     private GameObject playerTemporary;
+    public Ingredient ingredient;
 
-    private IngredientData[] listTemporary;
+
     void Start()
     {
         var player = GameObject.FindGameObjectWithTag("Player");
-        listTemporary = player.GetComponent<playerInventory>().ingredientsDataList;
-        for(int i = 0; i<listTemporary.Length; i++){
-            if(listTemporary[i] != null){
-                amount+=1;
-                listTemporary[i] = null;
-            }
-        }
+        
         updateText();
     }
 
@@ -38,12 +31,11 @@ public class Chest : ItensPriority,BaseItem
         playerTemporary = player;
         if(player.GetComponent<playerInteraction>().isHolding == false){
             if(amount>0){
-                GenerateFood(ingredientData);
-                var food = Instantiate(genericFood,player.GetComponent<playerInteraction>().grabPoint.transform.position,player.GetComponent<playerInteraction>().grabPoint.rotation);
-                food.layer = LayerMask.NameToLayer("InteractableLayer");
+                //var food = Instantiate(genericFood,player.GetComponent<playerInteraction>().grabPoint.transform.position,player.GetComponent<playerInteraction>().grabPoint.rotation);
+                var food = Instantiate(new GameObject("BlankIngredient"), player.GetComponent<playerInteraction>().grabPoint.transform.position, player.GetComponent<playerInteraction>().grabPoint.rotation);
+                TransformIngredients(food,player);
                 removeAmount(1);
                 player.GetComponent<playerInteraction>().isHolding = true;
-                food.GetComponent<Ingredient>().Interact(player);
                 //food.GetComponent<Ingredient>().isGrabbed= true;
             }
         }
@@ -62,16 +54,17 @@ public class Chest : ItensPriority,BaseItem
         amount -= remove;
         if(amount<= 0) amount = 0;
     }
-    
-    public void GenerateFood(IngredientData data){
-        genericFood.GetComponent<Ingredient>().name = data.name;
-        genericFood.GetComponent<SpriteRenderer>().sprite = data.IngredientSprite;
-        genericFood.GetComponent<CircleCollider2D>().isTrigger=true;
-        genericFood.GetComponent<Ingredient>().canInteract = true;
-        genericFood.GetComponent<Ingredient>().isGrabbed=false;
-        genericFood.GetComponent<Ingredient>().SetPlayerInteraction(playerTemporary.GetComponent<playerInteraction>());
-        
+
+    public void TransformIngredients(GameObject food, GameObject player){
+        food.layer = LayerMask.NameToLayer("InteractableLayer");
+        food.name = ingredient._name;
+        food.AddComponent<SpriteRenderer>().sprite = ingredient.sprite;
+        food.AddComponent<BoxCollider2D>().isTrigger=true;
+        food.AddComponent<FoodInteract>().setHoldPoint(player.GetComponent<playerInteraction>().grabPoint);
+
     }
+    
+    
     IEnumerator setFoodOnHands(){
         yield return new WaitForSeconds(0.1f);
         Debug.Log(playerTemporary.name);
