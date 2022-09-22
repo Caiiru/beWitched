@@ -6,11 +6,14 @@ public class Furnace : ItensPriority, BaseItem
 {
     [SerializeField] private int CookTime;
     [SerializeField] Color furnaceColor;
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject ingredient;
+    GameObject player;
+    GameObject ingredient;
+
+    private bool isActive;
     
     void Start()
     {
+        isActive=false;
         GetComponent<SpriteRenderer>().color = furnaceColor;
     }
 
@@ -22,11 +25,12 @@ public class Furnace : ItensPriority, BaseItem
 
     public void Interact(GameObject player){
         this.player = player;
-        if(player.GetComponent<playerInteraction>().isHolding){
-            player.GetComponent<playerInteraction>().isHolding=false;
+        if(player.GetComponent<playerInteraction>().isHolding && !isActive){
             ingredient = player.GetComponent<playerInteraction>().returnFirstFood();
             ingredient.transform.position = transform.position;
             ingredient.GetComponent<Ingredient>().canInteract =false;
+            isActive=true;
+            player.GetComponent<playerInteraction>().isHolding=false;
             StartCoroutine(Cooking(ingredient));
         }
 
@@ -35,6 +39,7 @@ public class Furnace : ItensPriority, BaseItem
         food.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(CookTime);
         food.GetComponent<Ingredient>().canInteract=true;
+        isActive=false;
         food.GetComponent<SpriteRenderer>().enabled = true;
         food.GetComponent<SpriteRenderer>().color = furnaceColor;
         

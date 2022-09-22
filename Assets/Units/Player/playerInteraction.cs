@@ -61,7 +61,7 @@ public class playerInteraction : MonoBehaviour
         }
         sortedList = checkedObjects.OrderBy(o => o.GetComponent<ItensPriority>().InteractPriority).ToList();
         foreach(var item in ( sortedList)){
-            item.transform.GetComponent<BaseItem>().Interact(this.gameObject);
+                item.transform.GetComponent<BaseItem>().Interact(this.gameObject);
         }
 
     }

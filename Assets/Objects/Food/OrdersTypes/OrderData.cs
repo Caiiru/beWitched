@@ -7,4 +7,8 @@ public class OrderData : ScriptableObject
     public new string name;
     public Sprite IngredientSprite;
     public Color ingredientColor;
+
+    public List<IngredientData> Ingredients = new List<IngredientData>();
+
+    
 }

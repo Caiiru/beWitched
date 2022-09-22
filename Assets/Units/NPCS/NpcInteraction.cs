@@ -10,6 +10,7 @@ public class NpcInteraction : MonoBehaviour,BaseItem
     private bool haveBeenOrdered= false;
     public GameObject orderImage;
     private GameObject speechBaloom;
+    [SerializeField] OrderData currentOrder;
     private void Start() {
         speechBaloom = transform.GetChild(0).gameObject;
         speechBaloom.SetActive(false);
@@ -20,10 +21,18 @@ public class NpcInteraction : MonoBehaviour,BaseItem
                 speechBaloom.SetActive(true);
                 //Futuramente fazer uma state machine com os estados -> Chegando, Esperando para Fazer o pedido, esperando o pedido, indo embora
                 int orderNumber = Random.Range(0,3);
-                OrderData order  = possibleOrders[orderNumber];
-                orderImage.GetComponent<SpriteRenderer>().color = order.ingredientColor;
+                currentOrder  = possibleOrders[orderNumber];
+                orderImage.GetComponent<SpriteRenderer>().color = currentOrder.ingredientColor;
                 haveBeenOrdered=true;
 
+
+            }
+            else{
+                var food = player.GetComponent<playerInteraction>().returnFirstFood().GetComponent<SpriteRenderer>().color;
+
+                if(currentOrder.ingredientColor == food){
+                    Debug.Log("AAAAAAAAAAAA");
+                }
 
             }
 

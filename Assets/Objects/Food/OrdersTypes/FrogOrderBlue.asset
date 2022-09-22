@@ -15,3 +15,5 @@ MonoBehaviour:
   name: Frog
   IngredientSprite: {fileID: -1973819126, guid: 4122a176454c1c64d82029b94d41819f, type: 3}
   ingredientColor: {r: 0.19131899, g: 1, b: 0, a: 0.59607846}
+  Ingredients:
+  - {fileID: 11400000, guid: 4d3f97b0c6a47b441a276f7e67508d68, type: 2}
