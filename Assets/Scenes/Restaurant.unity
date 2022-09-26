@@ -2853,6 +2853,10 @@ PrefabInstance:
       value: Chest
       objectReference: {fileID: 0}
     - target: {fileID: 2969321263630966403, guid: 915488f0aeb0493408ceda7d679568b6, type: 3}
+      propertyPath: ingredient
+      value: 
+      objectReference: {fileID: 11400000, guid: 73a69e1a7c17be444a16cd8ac6e11d59, type: 2}
+    - target: {fileID: 2969321263630966403, guid: 915488f0aeb0493408ceda7d679568b6, type: 3}
       propertyPath: InteractPriority
       value: 1
       objectReference: {fileID: 0}
@@ -2953,6 +2957,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5582368657776419810, guid: 8a23f11adcd7da2468214b40b9a12d32, type: 3}
+      propertyPath: InteractPriority
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 5582368657776419811, guid: 8a23f11adcd7da2468214b40b9a12d32, type: 3}
       propertyPath: m_Color.b
       value: 0.50787646
@@ -3042,7 +3050,7 @@ PrefabInstance:
     - target: {fileID: 737440492313720292, guid: 2d78d62c1dcefca4da0c63aeb2ac567a, type: 3}
       propertyPath: ingredientsDataList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 4d3f97b0c6a47b441a276f7e67508d68, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8599277552691115601, guid: 2d78d62c1dcefca4da0c63aeb2ac567a, type: 3}
       propertyPath: m_Name
       value: Player

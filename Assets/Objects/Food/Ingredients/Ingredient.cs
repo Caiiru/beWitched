@@ -6,9 +6,16 @@ using UnityEngine;
 public class Ingredient : ScriptableObject
 {
     public string _name;
+    [Space]
+    [Header("Sprites")]
+    [PreviewSprite] public Sprite normal_sprite;
+    [PreviewSprite] public Sprite fried_sprite;
+    [PreviewSprite] public Sprite gororoba_sprite;
 
-    [PreviewSprite] public Sprite sprite;
+    [Space]
+    [Header("Infos")]
     [Range(1,10)] public int cookTime;
 
-    public bool isFried = false;
+
+
 }

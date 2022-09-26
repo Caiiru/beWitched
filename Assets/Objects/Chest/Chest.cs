@@ -13,6 +13,8 @@ public class Chest : ItensPriority,BaseItem
     private GameObject playerTemporary;
     public Ingredient ingredient;
 
+    [SerializeField] GameObject genericFood;
+
 
     void Start()
     {
@@ -29,20 +31,32 @@ public class Chest : ItensPriority,BaseItem
     
     public void Interact(GameObject player){
         playerTemporary = player;
-        if(player.GetComponent<playerInteraction>().isHolding == false){
+        
+        if(!player.GetComponent<playerHold>().getIsHolding()){
+            
+            
             if(amount>0){
-                //var food = Instantiate(genericFood,player.GetComponent<playerInteraction>().grabPoint.transform.position,player.GetComponent<playerInteraction>().grabPoint.rotation);
-                var food = Instantiate(new GameObject("BlankIngredient"), player.GetComponent<playerInteraction>().grabPoint.transform.position, player.GetComponent<playerInteraction>().grabPoint.rotation);
+                var food = Instantiate(genericFood,player.GetComponent<playerInteraction>().grabPoint.transform.position,player.GetComponent<playerInteraction>().grabPoint.rotation);
+                //var food = Instantiate(new GameObject("BlankIngredient"), player.GetComponent<playerInteraction>().grabPoint.transform.position, player.GetComponent<playerInteraction>().grabPoint.rotation);
                 TransformIngredients(food,player);
                 removeAmount(1);
-                player.GetComponent<playerInteraction>().isHolding = true;
-                //food.GetComponent<Ingredient>().isGrabbed= true;
             }
+             
         }
+        else{
+            if(player.GetComponent<playerHold>().GetHoldObject().transform.GetComponent<foodData>().getData()==ingredient){
+                if(amount<maxAmount){
+                    Destroy(player.GetComponent<playerHold>().GetHoldObject());
+                    addAmount(1);
+                }
+            } 
+        }
+
         updateText();
+       
     }
 
-    public void updateText(){
+    void updateText(){
         textShowAmount.text = amount + " / " + maxAmount;
 
     }
@@ -58,9 +72,11 @@ public class Chest : ItensPriority,BaseItem
     public void TransformIngredients(GameObject food, GameObject player){
         food.layer = LayerMask.NameToLayer("InteractableLayer");
         food.name = ingredient._name;
-        food.AddComponent<SpriteRenderer>().sprite = ingredient.sprite;
+        //food.AddComponent<SpriteRenderer>().sprite = ingredient.sprite;
+        food.GetComponent<SpriteRenderer>().sprite=ingredient.normal_sprite;
         food.AddComponent<BoxCollider2D>().isTrigger=true;
-        food.AddComponent<FoodInteract>().setHoldPoint(player.GetComponent<playerInteraction>().grabPoint);
+        food.GetComponent<foodData>().setData(ingredient);
+        food.GetComponent<FoodInteract>().Interact(player);
 
     }
     
@@ -70,4 +86,5 @@ public class Chest : ItensPriority,BaseItem
         Debug.Log(playerTemporary.name);
         
     }
+
 }

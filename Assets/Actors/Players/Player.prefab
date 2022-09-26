@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8599277552691115615}
   - component: {fileID: 8599277552691115614}
   - component: {fileID: 8599277552691115610}
+  - component: {fileID: 4451820645685815755}
   - component: {fileID: 737440492313720292}
   - component: {fileID: 3371991728735574847}
   - component: {fileID: 8599277552691115611}
@@ -73,9 +74,23 @@ MonoBehaviour:
     m_Bits: 64
   canInteract: 0
   grabPoint: {fileID: 8599277553162033678}
-  isHolding: 0
   checkedObjects: []
   sortedList: []
+--- !u!114 &4451820645685815755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599277552691115601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841b9ed656860624188533fbc6c9a3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHolding: 0
+  holdedObject: {fileID: 0}
+  grabPoint: {fileID: 0}
 --- !u!114 &737440492313720292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685e5003c0cbdd340a61401d42069ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonInventoryList: []
 --- !u!114 &3371991728735574847
 MonoBehaviour:
   m_ObjectHideFlags: 0

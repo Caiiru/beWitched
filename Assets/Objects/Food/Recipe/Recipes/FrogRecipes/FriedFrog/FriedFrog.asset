@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae0b3f9d29728944a1ee635b371816b, type: 3}
   m_Name: FriedFrog
   m_EditorClassIdentifier: 
-  _name: 
-  recipeSprite: {fileID: 0}
-  ingredients: []
-  totalCookTime: 0
+  _name: Fried Frog
+  recipeSprite: {fileID: 21300000, guid: 4f16ba996f913514aa09bb0308eaf1c8, type: 3}
+  ingredients:
+  - {fileID: 11400000, guid: 73a69e1a7c17be444a16cd8ac6e11d59, type: 2}
+  totalCookTime: 3
+  isFinished: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb1d0670ea1b0a4882b7ea061f50a06, type: 3}
   m_Name: FrogLeg
   m_EditorClassIdentifier: 
-  _name: 
-  sprite: {fileID: 0}
-  cookTime: 0
+  _name: Frog Leg
+  sprite: {fileID: 21300000, guid: 4b9185edbc5ee1d4c91c98957b72c66f, type: 3}
+  cookTime: 3
+  isFried: 0
