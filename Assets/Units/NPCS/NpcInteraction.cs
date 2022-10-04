@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class NpcInteraction : MonoBehaviour,BaseItem
 {
+
+    public void Interact(GameObject player){
+        
+    }
+    /*
     public Ingredient[] orders = new Ingredient[3];
     public bool canInteract;
     private bool haveBeenOrdered= false;
@@ -23,6 +28,6 @@ public class NpcInteraction : MonoBehaviour,BaseItem
             }
         }
     }
-    
+    */
 
 }

@@ -6,6 +6,7 @@ public class plateScript : ItensPriority,BaseItem
 {
     private bool canInteract = true;
     public List<GameObject> holdedIngredients = new List<GameObject>();
+    public Ingredient[] datas;
     private void Start() {
         
         InteractPriority = 1;
@@ -17,7 +18,13 @@ public class plateScript : ItensPriority,BaseItem
             if(p.GetHoldObject() != this.gameObject){
                 holdedIngredients.Add(p.GetHoldObject());
                 var go = p.GetHoldObject();
+                int i=0;
                 go.transform.parent = this.transform;
+                foreach(var obj in holdedIngredients){
+                    
+                    datas[i] = obj.transform.GetComponent<Ingredient>();
+                    i++;
+                }
                 
             }
             p.unHold();

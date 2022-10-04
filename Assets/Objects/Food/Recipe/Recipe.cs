@@ -6,20 +6,13 @@ public class Recipe : ScriptableObject
 {
     
     public string _name;
-    [PreviewSprite]public Sprite recipeSprite;
-    public Ingredient[] ingredients;
+    //public Ingredient[] ingredients;
     
-    public Ingredients2[] ingredients2s;
+    public IngredientData[] ingredients;
+    [PreviewSprite]public Sprite recipeSprite;
 
-    [Space]
-
-    public float totalCookTime;
 
     private void OnValidate() {
-        totalCookTime=0;
-        foreach(var item in ingredients){
-            if(item!=null)
-                totalCookTime += item.cookTime;
-        }
+        
     }
 }

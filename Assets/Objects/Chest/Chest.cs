@@ -43,6 +43,7 @@ public class Chest : ItensPriority,BaseItem
             }
              
         }
+        /*
         else{
             if(player.GetComponent<playerHold>().GetHoldObject().transform.GetComponent<foodData>().getData()==ingredient){
                 if(amount<maxAmount){
@@ -51,6 +52,7 @@ public class Chest : ItensPriority,BaseItem
                 }
             } 
         }
+        */
 
         updateText();
        

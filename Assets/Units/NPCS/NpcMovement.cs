@@ -45,7 +45,7 @@ public class NpcMovement : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position,targetWaypoint,speed*Time.deltaTime);
             if(new Vector2(transform.position.x,transform.position.y) == targetWaypoint && targetWaypoint == waypoints.Last()){
                 if(waypoints[targetWaypointIndex] == waypoints.Last()){
-                    gameObject.GetComponent<NpcInteraction>().canInteract=true;
+                    //gameObject.GetComponent<NpcInteraction>().canInteract=true;
                     haveSit=true; 
                     break;
                 }

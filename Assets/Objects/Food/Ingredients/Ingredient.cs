@@ -12,10 +12,4 @@ public class Ingredient : ScriptableObject
     [PreviewSprite] public Sprite fried_sprite;
     [PreviewSprite] public Sprite gororoba_sprite;
 
-    [Space]
-    [Header("Infos")]
-    [Range(1,10)] public int cookTime;
-
-
-
 }
