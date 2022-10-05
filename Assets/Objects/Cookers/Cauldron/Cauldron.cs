@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Cauldron : MonoBehaviour, BaseItem
 {
     [SerializeField] int maxCookTime = 0;
@@ -9,9 +10,17 @@ public class Cauldron : MonoBehaviour, BaseItem
     int burnTime;
     [SerializeField]bool isActive;
     public List<GameObject> holdedObjects = new List<GameObject>();
+
+    [Space]
+    [Header("Components")]
+     BoxCollider2D triggerCollider;
+     GameObject canvas;
+
+
     void Start()
     {
-        
+        canvas = transform.GetChild(1).transform.gameObject;
+        triggerCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -78,5 +87,21 @@ public class Cauldron : MonoBehaviour, BaseItem
     }
     public int getCurrentCookTime(){
         return currentCookTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            canvas.GetComponent<Cauldron_Canvas>().activateCanvas();
+            
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            StartCoroutine(canvas.GetComponent<Cauldron_Canvas>().desactivateCanvas());
+        }
     }
 }
