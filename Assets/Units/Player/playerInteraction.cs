@@ -6,7 +6,7 @@ using System.Linq;
 [RequireComponent(typeof(playerInputs))]
 public class playerInteraction : MonoBehaviour
 {
-    private float interactRange = 1f;
+    [SerializeField][Range(1f,5f)]private float interactRange = 1f;
     [SerializeField] GameObject detectedGameObject;
     public LayerMask interactLayerMask;
 
@@ -19,6 +19,8 @@ public class playerInteraction : MonoBehaviour
 
     public List<GameObject> checkedObjects = new List<GameObject>();
     public List<GameObject> sortedList = new List<GameObject>();
+
+
     
     void Start()
     {
@@ -51,7 +53,7 @@ public class playerInteraction : MonoBehaviour
         sortedList = checkedObjects.OrderBy(o => o.GetComponent<ItensPriority>().InteractPriority).ToList();
         foreach(var item in (sortedList)){
             item.transform.GetComponent<BaseItem>().Interact(this.gameObject);
-            return;
+            break;
         }
 
     }

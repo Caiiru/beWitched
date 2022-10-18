@@ -7,11 +7,34 @@ public class plateScript : ItensPriority,BaseItem
     private bool canInteract = true;
     public List<GameObject> holdedIngredients = new List<GameObject>();
     public Ingredient[] datas;
+    private bool isGettingHolded = false;
     private void Start() {
         
         InteractPriority = 1;
     }
+    
+    
     public void Interact(GameObject player){
+        print("Interact plate");
+        var hold = player.GetComponent<playerHold>();
+        if(hold.getIsHolding() && hold.GetHoldObject().CompareTag("Ingredient")){
+            var ob = hold.GetHoldObject();
+            ob.transform.parent = this.transform;
+            holdedIngredients.Add(ob);
+            hold.unHold();
+        }
+        else{
+            if(isGettingHolded){
+                isGettingHolded = false;
+                hold.unHold();
+            }
+            else{
+                isGettingHolded=true;
+                hold.Hold(this.gameObject);
+                //this.transform.parent = player.transform;
+            }
+        }
+        /*
         var p = player.GetComponent<playerHold>();
         var interact = player.GetComponent<playerInteraction>();
         if(p.getIsHolding() == true){
@@ -40,11 +63,18 @@ public class plateScript : ItensPriority,BaseItem
                 p.unHold();
             }
         }
-
+        */
     }
     private void Update() {
         foreach(var i in holdedIngredients){
             i.transform.position=this.transform.position;
         }
+    }
+    public bool isEmpty(){
+        if(holdedIngredients.Count == 0){
+            return true;
+        }
+        else
+            return false;
     }
 }

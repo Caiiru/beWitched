@@ -8,7 +8,7 @@ public class Furnace : CookerData, BaseItem
     [SerializeField] Color furnaceColor;
     GameObject player;
     GameObject ingredient;
-    bool isHoldingIngredient= false;
+    public bool isHoldingIngredient= false;
 
     private bool isActive;
     
@@ -26,37 +26,51 @@ public class Furnace : CookerData, BaseItem
 
     public void Interact(GameObject player){
         this.player = player;
+        playerHold hold = player.GetComponent<playerHold>();
         if(!isActive){
-            if(isHoldingIngredient){
-                isHoldingIngredient=false;
-                ingredient.GetComponent<FoodInteract>().Interact(player);
-            }
-            else{
-                if(player.GetComponent<playerHold>().getIsHolding()){
-                    
+            if(hold.getIsHolding()){
+                if(hold.GetHoldObject().CompareTag("Ingredient")){
                     ingredient = player.GetComponent<playerInteraction>().returnFirstFood();
-                    var h = player.GetComponent<playerHold>();
-                    h.unHold();
-                    Debug.Log("Try");
+                    hold.unHold();
                     ingredient.transform.position = transform.position;
                     //ingredient.GetComponent<Ingredient>().canInteract =false;
                     isActive=true;
                     isHoldingIngredient=true;
                     StartCoroutine(Cooking(ingredient));
+                
                 }
-
+                else if(hold.GetHoldObject().CompareTag("Plate")){
+                    if(ingredient!=null){
+                        isHoldingIngredient=false;
+                        ingredient.transform.position = hold.GetHoldObject().transform.position;
+                        ingredient.GetComponent<FoodInteract>().Interact(player);
+                    }
+                }
+                else{
+                    Debug.Log("Empty hands");
+                }
             }
+            else if(isHoldingIngredient){
+                isHoldingIngredient=false;
+                ingredient.GetComponent<FoodInteract>().Interact(player);
+            }
+            else{
+                Debug.Log("Empty hands");
+            }
+
         }
+        
+        
         
 
     }
     IEnumerator Cooking(GameObject food){
         food.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(CookTime);
-        //food.GetComponent<Ingredient>().canInteract=true;
         isActive=false;
         food.GetComponent<SpriteRenderer>().enabled = true;
-        food.GetComponent<foodData>().Cook(type);
+        //food.GetComponent<foodData>().Cook(type);
+        food.GetComponent<IngredientData>().changeState(IngredientData.ingredientStage.Fry);
         isActive=false;
         
     }

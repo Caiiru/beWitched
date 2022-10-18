@@ -34,7 +34,7 @@ public class foodData : MonoBehaviour
                 }
                 else{
                     stage=currentStage.GOROROBA;
-                    GetComponent<SpriteRenderer>().sprite = ingredientData.gororoba_sprite;
+                    GetComponent<SpriteRenderer>().sprite = ingredientData.slime_sprite;
                 }
             break;
         }

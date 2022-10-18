@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebb1d0670ea1b0a4882b7ea061f50a06, type: 3}
-  m_Name: FrogLegData
+  m_Name: GororobaData
   m_EditorClassIdentifier: 
-  _name: FrogLeg
-  cookTime: 4
-  normal_sprite: {fileID: 21300000, guid: 4b9185edbc5ee1d4c91c98957b72c66f, type: 3}
-  fried_sprite: {fileID: 21300000, guid: f6195e9ca98ab2643a76af29640a4edb, type: 3}
+  _name: Gororoba
+  cookTime: 0
+  normal_sprite: {fileID: 21300000, guid: a58d562d0760f224eb53f8e2912e8652, type: 3}
+  fried_sprite: {fileID: 0}
   cutted_sprite: {fileID: 0}
   slime_sprite: {fileID: 0}

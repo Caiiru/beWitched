@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - WaveSpawner
+  - Food
+  - Ingredient
+  - Plate
+  - OrderManager
   layers:
   - Default
   - TransparentFX
@@ -13,7 +17,7 @@ TagManager:
   - Water
   - UI
   - InteractableLayer
-  - 
+  - UI2
   - 
   - 
   - 

@@ -6,6 +6,7 @@ public enum GameState {RESTAURANT, DUNGEON}
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public OrderManager orderManager;
 
     [SerializeField] private GameState gameState = GameState.RESTAURANT;
 

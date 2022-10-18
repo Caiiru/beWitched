@@ -77,7 +77,7 @@ public class Chest : ItensPriority,BaseItem
         //food.AddComponent<SpriteRenderer>().sprite = ingredient.sprite;
         food.GetComponent<SpriteRenderer>().sprite=ingredient.normal_sprite;
         food.AddComponent<BoxCollider2D>().isTrigger=true;
-        food.GetComponent<foodData>().setData(ingredient);
+        food.GetComponent<IngredientData>().setData(ingredient);
         food.GetComponent<FoodInteract>().Interact(player);
 
     }
